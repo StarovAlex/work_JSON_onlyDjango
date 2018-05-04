@@ -1,0 +1,3 @@
+"""
+It would be nice to cover the code with tests. But the question is at runtime ....
+"""

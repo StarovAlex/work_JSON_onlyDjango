@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Output JSON data</title>
+    <style>
+        * {
+            line-height: 50%;
+        }
+    </style>
+</head>
+<body>
+
+{% for key, value in category.items %}
+    {% if forloop.first %}
+        <p>{</p>
+    {% endif %}
+    <p style="margin-left:30px;">"{{ key }}": {{ value }},</p>
+    {% if forloop.last %}
+        <p style="margin-left:30px;">"parents": [</p>
+        {% for p in parent %}
+            {% for key, value in p.items %}
+                {% if forloop.first %}
+                    <p style="margin-left:60px;">{</p>
+                {% endif %}
+                <p style="margin-left:90px;">"{{ key }}": {{ value }},</p>
+                {% if forloop.last %}
+                    <p style="margin-left:60px;">}</p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <p style="margin-left:30px;">],</p>
+        <p style="margin-left:30px;">"children": [</p>
+        {% for c in children %}
+            {% for key, value in c.items %}
+                {% if forloop.first %}
+                    <p style="margin-left:60px;">{</p>
+                {% endif %}
+                <p style="margin-left:90px;">"{{ key }}": {{ value }},</p>
+                {% if forloop.last %}
+                    <p style="margin-left:60px;">}</p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <p style="margin-left:30px;">],</p>
+        <p style="margin-left:30px;">"sibling": [</p>
+        {% for s in sibling %}
+            {% for key, value in s.items %}
+                {% if forloop.first %}
+                    <p style="margin-left:60px;">{</p>
+                {% endif %}
+                <p style="margin-left:90px;">"{{ key }}": {{ value }},</p>
+                {% if forloop.last %}
+                    <p style="margin-left:60px;">}</p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <p style="margin-left:30px;">]</p>
+        <p>}</p>
+    {% endif %}
+{% endfor %}
+
+</body>
+</html>
